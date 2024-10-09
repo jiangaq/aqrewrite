@@ -15,8 +15,8 @@ TG频道群：https://t.me/py
 
 [rewrite_local]
 
-^https:\/\/dict\.youdao\.com\/vip\/user\/status url script-response-body 
-https://raw.githubusercontent.com/jiangaq/aqrewrite/refs/heads/main/wyydcd.js
+^https:\/\/dict\.youdao\.com\/vip\/user\/status url script-response-body https://raw.githubusercontent.com/jiangaq/aqrewrite/refs/heads/main/wyydcd.js
+
 
 [mitm] 
 
