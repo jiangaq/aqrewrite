@@ -5,10 +5,9 @@
 更新日期：2024-09-16
 脚本作者：chxm1023
 电报频道：https://t.me/chxm1023
-使用声明：⚠️仅供参考，🈲转载与售卖！
 
 **************************************
-
+  
 [rewrite_local]
 ^https?:\/\/.*\.vlognow\.me\/.*-pay\/api\/v\d\/(user\/subscriptions|public\/iap\/receipt\/status) url script-response-body https://raw.githubusercontent.com/jiangaq/aqrewrite/refs/heads/main/Flow.js
 
