@@ -11,7 +11,7 @@
 使用声明： 仅供个人参考学习交流，禁止用于商业用途。
 
 [rewrite_local]
-^https:\/\/api\.mondlylanguages\.com\/v3\/ios\/user\/sync url script-response-body https://raw.githubusercontent.com/jiangaq/aqrewrite/refs/heads/main/MondlyPremium.js    
+^https:\/\/api\.mondlylanguages\.com\/v3\/ios\/user\/sync url script-response-body https://raw.githubusercontent.com/jiangaq/aqrewrite/refs/heads/main/MondlyPremium.js
 
 [mitm]
 hostname = api.mondlylanguages.com
