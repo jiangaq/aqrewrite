@@ -9,8 +9,8 @@
 *******************************
 [rewrite_local]
 # > Spokenly Pro 解锁
-^https?:\/\/api\.spokenly\.app\/api\/chromex\/spokenly\/(config|device\/check-free-limit) url script-response-body https://raw.githubusercontent.com/YOUR_REPO/spokenly_crack.js
-^https?:\/\/api\.revenuecat\.com\/v1\/(subscribers|receipts) url script-response-body https://raw.githubusercontent.com/YOUR_REPO/spokenly_crack.js
+^https?:\/\/api\.spokenly\.app\/api\/chromex\/spokenly\/(config|device\/check-free-limit) url script-response-body https://raw.githubusercontent.com/jiangaq/aqrewrite/refs/heads/main/spokenly_crack.js
+^https?:\/\/api\.revenuecat\.com\/v1\/(subscribers|receipts) url script-response-body https://raw.githubusercontent.com/jiangaq/aqrewrite/refs/heads/main/spokenly_crack.js
 
 [mitm]
 hostname = api.spokenly.app, api.revenuecat.com
