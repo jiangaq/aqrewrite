@@ -1,0 +1,24 @@
+name: Spokenly Pro Unlock
+desc: 远程脚本解锁 Spokenly
+author: aQ
+http:
+  mitm:
+    - api.spokenly.app
+    - api.revenuecat.com
+
+  script:
+    - match: ^https?:\/\/api\.revenuecat\.com\/v1\/(subscribers|receipts)
+      name: 'spokenly-script'
+      type: requestn
+      require-body: false
+      timeout: 10
+    - match: ^https?:\/\/(api\.spokenly\.app|api\.revenuecat\.com)
+      name: 'spokenly-script'
+      type: response
+      require-body: true
+      timeout: 10
+
+script-providers:
+  'spokenly-script':
+    url: https://raw.githubusercontent.com/jiangaq/aqrewrite/refs/heads/main/spokenly_crack.js
+    interval: 86400
