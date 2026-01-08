@@ -11,7 +11,7 @@
 
 [mitm] 
 
-hostname = dida365.com
+hostname = dida365.com, ticktick.com
 
 *******************************/
 
