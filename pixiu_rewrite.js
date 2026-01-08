@@ -4,8 +4,8 @@
 
 [rewrite_local]
 # 匹配貔貅私有接口 & iTunes收据验证
-^https?:\/\/api\.pixiu\.design\/api\/v1\/user\/info url script-response-body https://raw.githubusercontent.com/chxm1023/Rewrite/main/iTunes.js
-^https?:\/\/buy\.itunes\.apple\.com\/verifyReceipt url script-response-body https://raw.githubusercontent.com/chxm1023/Rewrite/main/iTunes.js
+^https?:\/\/api\.pixiu\.design\/api\/v1\/user\/info url script-response-body https://raw.githubusercontent.com/jiangaq/aqrewrite/refs/heads/main/pixiu_rewrite.js
+^https?:\/\/buy\.itunes\.apple\.com\/verifyReceipt url script-response-body https://raw.githubusercontent.com/jiangaq/aqrewrite/refs/heads/main/pixiu_rewrite.js
 
 [mitm]
 hostname = api.pixiu.design, buy.itunes.apple.com
