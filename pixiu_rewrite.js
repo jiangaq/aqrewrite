@@ -4,7 +4,7 @@
 
 [rewrite_local]
 # 匹配貔貅用户信息接口
-^https?:\/\/api\.pixiu\.design\/api\/v1\/user\/info url script-response-body https://raw.githubusercontent.com/chxm1023/Rewrite/main/iTunes.js
+^https?:\/\/api\.pixiu\.design\/api\/v1\/user\/info url script-response-body https://raw.githubusercontent.com/jiangaq/aqrewrite/refs/heads/main/pixiu_rewrite.js
 
 [mitm]
 hostname = api.pixiu.design
