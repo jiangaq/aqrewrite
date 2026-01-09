@@ -3,9 +3,9 @@
  * 功能：解锁指数宝 VIP，查看全部指数榜单，解锁详情页智能诊断和评分
  * 
  * [Rewrite]
- * ^https:\/\/api\.fulaizhitou\.com\/tools\/user\/center url script-response-body fulaizhitou_crack.js
- * ^https:\/\/api\.fulaizhitou\.com\/tools\/code\/xgx url script-response-body fulaizhitou_crack.js
- * ^https:\/\/api\.fulaizhitou\.com\/tools\/code\/charts url script-response-body fulaizhitou_crack.js
+ * ^https:\/\/api\.fulaizhitou\.com\/tools\/user\/center url script-response-body https://raw.githubusercontent.com/jiangaq/aqrewrite/refs/heads/main/fulaizhitou_crack.js
+ * ^https:\/\/api\.fulaizhitou\.com\/tools\/code\/xgx url script-response-body https://raw.githubusercontent.com/jiangaq/aqrewrite/refs/heads/main/fulaizhitou_crack.js
+ * ^https:\/\/api\.fulaizhitou\.com\/tools\/code\/charts url script-response-body https://raw.githubusercontent.com/jiangaq/aqrewrite/refs/heads/main/fulaizhitou_crack.js
  * 
  * [MITM]
  * hostname = api.fulaizhitou.com
