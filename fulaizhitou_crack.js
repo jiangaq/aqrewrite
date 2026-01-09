@@ -1,11 +1,10 @@
-/*
+ /*
  * 复来智投 (FulaiZhitou) VIP 破解脚本
  * 功能：解锁指数宝 VIP，查看全部指数榜单，解锁详情页智能诊断和评分
  * 
  * [Rewrite]
- * ^https:\/\/api\.fulaizhitou\.com\/tools\/user\/center url script-response-body https://raw.githubusercontent.com/jiangaq/aqrewrite/refs/heads/main/fulaizhitou_crack.js
- * ^https:\/\/api\.fulaizhitou\.com\/tools\/code\/xgx url script-response-body https://raw.githubusercontent.com/jiangaq/aqrewrite/refs/heads/main/fulaizhitou_crack.js
- * ^https:\/\/api\.fulaizhitou\.com\/tools\/code\/charts url script-response-body https://raw.githubusercontent.com/jiangaq/aqrewrite/refs/heads/main/fulaizhitou_crack.js
+ * ^https:\/\/api\.fulaizhitou\.com\/tools\/user\/center url script-response-body https://raw.githubusercontent.com/jiangaq/aqrewrite/refs/heads/main/fulaizhitou_crack.js  
+ * ^https:\/\/api\.fulaizhitou\.com\/tools\/code\/(xgx|charts|detail) url script-response-body https://raw.githubusercontent.com/jiangaq/aqrewrite/refs/heads/main/fulaizhitou_crack.js  
  * 
  * [MITM]
  * hostname = api.fulaizhitou.com
@@ -29,10 +28,9 @@ if (body) {
 
         // 2. 智能诊断 (xgx)
         else if (url.indexOf('tools/code/xgx') !== -1) {
-            // 构造假数据
-            obj.code = 10000; // 成功状态码
+            obj.code = 10000;
             obj.data = {
-                "desc": "尊贵的VIP用户，该指数当前估值合理，基本面稳健。技术面上方空间打开，建议保持关注。(破解生成的模拟建议)",
+                "desc": "尊贵的VIP用户，该指数当前估值合理，基本面稳健。技术面上方空间打开，建议保持关注。(破解 generated)",
                 "advise": "持有/买入",
                 "score": 88
             };
@@ -63,6 +61,23 @@ if (body) {
             console.log("✅ 复来智投: 智能评分已解锁");
         }
 
+        // 4. 详情页基本信息 (detail) - 可能也有些字段受限
+        else if (url.indexOf('tools/code/detail') !== -1) {
+            // 主要是防止 detail 接口返回 20000 (未登录) 导致页面加载失败
+            // 通常 idetail 接口如果不返回 10000，页面可能白屏或报错
+            if (obj.code !== 10000) {
+                obj.code = 10000;
+                // 如果 data 为空，可能需要填充一些假数据，但通常 data 还是有的，只是 code 不对
+                // 这里保守策略，只改 code
+            }
+            if (obj.data) {
+                // 强行注入 VIP 标记 (如果有的话)
+                obj.data.isVip = true;
+                obj.data.vip = 1;
+            }
+            console.log("✅ 复来智投: 详情页数据已修正");
+        }
+
         $done({ body: JSON.stringify(obj) });
     } catch (e) {
         console.log("❌ 复来智投脚本错误: " + e);
@@ -71,3 +86,4 @@ if (body) {
 } else {
     $done({});
 }
+
