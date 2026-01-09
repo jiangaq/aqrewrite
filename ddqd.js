@@ -15,19 +15,21 @@ hostname = dida365.com, ticktick.com
 
 *******************************/
 
-// 获取原始响应体
-var body = $response.body; 
+var body = $response.body;
 
-// 将字符串解析为 JSON 对象
-var obj = JSON.parse(body); 
-
-// 修改关键属性
-obj.proEndDate = "2099-01-01T00:00:00.000+0000"; // 设置会员到期时间为 2099 年
-obj.needSubscribe = false;                      // 设置不需要订阅
-obj.pro = true;                                 // 开启 Pro 权限开关
-
-// 将修改后的对象转回字符串
-body = JSON.stringify(obj); 
-
-// 结束脚本并返回修改后的数据
-$done(body);
+// 增加判断：只有当 body 存在且看起来像 JSON 时才解析
+if (body && body.startsWith('{')) {
+    try {
+        var obj = JSON.parse(body);
+        // ... 原有的修改逻辑 ...
+        obj.proEndDate = "2099-01-01T00:00:00.000+0000";
+        obj.pro = true;
+        $done({ body: JSON.stringify(obj) });
+    } catch (e) {
+        console.log("JSON 解析失败: " + e);
+        $done({}); // 解析失败则直接跳过，不修改
+    }
+} else {
+    console.log("响应内容不是 JSON，跳过处理");
+    $done({}); // 不是 JSON 则直接返回原数据
+}
