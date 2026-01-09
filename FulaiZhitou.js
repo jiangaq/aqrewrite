@@ -3,7 +3,7 @@
  * 功能：解锁指数宝 VIP，查看全部指数榜单
  * 
  * [Rewrite]
- * ^https:\/\/api\.fulaizhitou\.com\/tools\/user\/center url script-response-body fulaizhitou_crack.js
+ * ^https:\/\/api\.fulaizhitou\.com\/tools\/user\/center url script-response-body https://raw.githubusercontent.com/jiangaq/aqrewrite/refs/heads/main/FulaiZhitou.js
  * 
  * [MITM]
  * hostname = api.fulaizhitou.com
