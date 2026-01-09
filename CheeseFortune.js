@@ -2,8 +2,8 @@
  * 芝士财富 (Cheese Fortune) VIP 破解脚本
  * 
  * [Rewrite]
- * ^https:\/\/stock\.cheesefortune\.com\/api\/v2\/user\/vipType url script-response-body cheesefortune_crack.js
- * 
+ * ^https:\/\/stock\.cheesefortune\.com\/api\/v2\/user\/vipType url script-response-body https://raw.githubusercontent.com/jiangaq/aqrewrite/refs/heads/main/CheeseFortune.js
+ 
  * [MITM]
  * hostname = stock.cheesefortune.com
  */
