@@ -1,10 +1,11 @@
-/**
- * @name 慧博 iOS 权限解锁
- * @author Antigravity
- * @description 解锁慧博正式版权限、研报阅读及全模块限制
- * @rewrite ^https?:\/\/mp\.hibor\.com\.cn\/Mobile\/(GetJsonHandler|getTuHander)\.ashx url script-response-body https://raw.githubusercontent.com/jiangaq/aqrewrite/refs/heads/main/hibor_crack.js
- * @mitm mp.hibor.com.cn
- */
+/*
+[rewrite_local]
+^https?:\/\/mp\.hibor\.com\.cn\/Mobile\/(GetJsonHandler|getTuHander)\.ashx url script-response-body https://raw.githubusercontent.com/user/repo/main/hibor_crack.js
+
+[mitm]
+hostname = mp.hibor.com.cn
+
+*************************************/
 
 let body = $response.body;
 if (!body) $done({});
