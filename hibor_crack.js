@@ -1,6 +1,6 @@
 /*
 [rewrite_local]
-^https?:\/\/mp\.hibor\.com\.cn\/Mobile\/(GetJsonHandler|getTuHander)\.ashx url script-response-body https://raw.githubusercontent.com/user/repo/main/hibor_crack.js
+^https?:\/\/mp\.hibor\.com\.cn\/Mobile\/(GetJsonHandler|getTuHander)\.ashx url script-response-body https://raw.githubusercontent.com/jiangaq/aqrewrite/refs/heads/main/hibor_crack.js
 
 [mitm]
 hostname = mp.hibor.com.cn
