@@ -1,10 +1,10 @@
 /*
 乐股乐股 (legulegu.com) 去广告及解除图表倒计时脚本
 适用平台：Quantumult X
-作者：Antigravity
+
 [rewrite_local]
 # 拦截倒计时遮罩及网页广告
-^https?:\/\/legulegu\.com\/stockdata\/middle-avg-indicator url script-response-body https://raw.githubusercontent.com/user/repo/main/legulegu.js
+^https?:\/\/legulegu\.com\/stockdata\/middle-avg-indicator url script-response-body https://raw.githubusercontent.com/jiangaq/aqrewrite/refs/heads/main/legulegu.js
 [mitm]
 hostname = legulegu.com, *.legulegu.com
 */
