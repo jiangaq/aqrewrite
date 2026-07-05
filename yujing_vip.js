@@ -1,3 +1,11 @@
+// ==UserScript==
+// @name         语鲸 App 绕过验证
+// @desc         解锁 Pro 权限与各项使用额度
+// @author       aq
+// @match        https://api-public.lingowhale.com/api/lingowhale/v1/membership/status
+// @Mitm         api-public.lingowhale.com
+// ==/UserScript==
+
 let body = $response.body;
 
 if (body) {
@@ -33,13 +41,10 @@ if (body) {
         q.daily_voice_used = 0;
     }
 
-    // 【Debug 通知代码】执行成功时向系统发送弹窗通知
-    $notify("语鲸 App 绕过脚本", "🚀 重写执行成功", "已成功将数据修改为：Pro 会员 + 9999 额度");
+    // Debug 通知
+    $notify("语鲸 App 绕过脚本", "🚀 重写执行成功", "已成功修改本地会员状态数据");
 
-    // 3. 将修改后的数据返回给 App
     $done({ body: JSON.stringify(obj) });
 } else {
-    // 如果响应体为空，也弹窗提示
-    $notify("语鲸 App 绕过脚本", "⚠️ 警告", "抓取到了请求，但 Response Body 为空！");
     $done({});
 }
