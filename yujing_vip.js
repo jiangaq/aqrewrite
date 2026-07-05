@@ -5,6 +5,7 @@ hostname = api-public.lingowhale.com
 
 api-public\.lingowhale\.com\/api\/lingowhale\/v1\/membership\/status url script-response-body https://raw.githubusercontent.com/jiangaq/aqrewrite/refs/heads/main/yujing_vip.js
 api-public\.lingowhale\.com\/api\/lingowhale\/v1\/user_subscribe\/upsert url script-response-body https://raw.githubusercontent.com/jiangaq/aqrewrite/refs/heads/main/yujing_vip.js
+api-public\.lingowhale\.com\/api\/lingowhale\/v1\/user_subscribe\/list url script-response-body https://raw.githubusercontent.com/jiangaq/aqrewrite/refs/heads/main/yujing_vip.js
 */
 
 let url = $request.url;
@@ -13,7 +14,7 @@ let body = $response.body;
 if (body) {
     let obj = JSON.parse(body);
 
-    // 1. 如果是获取会员状态的接口
+    // 1. 拦截状态接口：解锁前端 Pro 界面与 9999 本地额度
     if (url.indexOf("/v1/membership/status") !== -1) {
         if (obj.data && obj.data.membership) {
             obj.data.membership.current_plan = "pro"; 
@@ -33,14 +34,32 @@ if (body) {
         }
     }
 
-    // 2. 如果是添加/更新订阅的接口 (解除 40301 限制)
+    // 2. 拦截添加订阅接口：放行 40301 报错阻断
     if (url.indexOf("/v1/user_subscribe/upsert") !== -1) {
         if (obj.data) {
-            // 强行把报错信息清空或改为 null，让前端以为服务器允许通过
             obj.data.membership_limit_info = null; 
-            // 模拟生成一个虚拟的订阅ID，防止前端因为没有 ID 报错
             if (!obj.data.subscribe_id) {
-                obj.data.subscribe_id = "sub_mock_666666";
+                obj.data.subscribe_id = "sub_mock_666666"; 
+            }
+        }
+        obj.code = 0;
+        obj.msg = "";
+    }
+
+    // 3. 拦截订阅列表接口：防止服务器返回的数据把我们新增的订阅冲掉
+    if (url.indexOf("/v1/user_subscribe/list") !== -1) {
+        // 如果服务器返回的列表存在，但因为超额被云端截断了
+        if (obj.data && Array.isArray(obj.data.list)) {
+            // 检查服务器返回的列表长度。如果它为空，或者少于你本地想要的，我们直接在前端模拟追加数据
+            // 为了防止列表直接为空，我们可以向里面 push 一个高级 Pro 独占的模拟频道数据
+            if (obj.data.list.length > 0) {
+                // 克隆列表里已有的第一个频道的格式，伪造一个无限制订阅
+                let mockItem = JSON.parse(JSON.stringify(obj.data.list[0]));
+                mockItem.subscribe_id = "sub_mock_666666";
+                mockItem.channel_id = "channel_mock_8888";
+                mockItem.title = "✨ 已解锁高级专属频道";
+                // 将伪造的频道追加进列表，骗过前端渲染
+                obj.data.list.push(mockItem);
             }
         }
         obj.code = 0;
