@@ -1,17 +1,17 @@
-// ==UserScript==
-// @name         语鲸 App 绕过验证
-// @desc         解锁 Pro 权限与各项使用额度
-// @author       aq
-// @match        https://api-public.lingowhale.com/api/lingowhale/v1/membership/status
-// @Mitm         api-public.lingowhale.com
-// ==/UserScript==
+// QX标准单脚本订阅模板：语鲸 App 绕过验证
+
+/*
+hostname = api-public.lingowhale.com
+
+api-public\.lingowhale\.com\/api\/lingowhale\/v1\/membership\/status url script-response-body https://raw.githubusercontent.com/jiangaq/aqrewrite/refs/heads/main/yujing_vip.js
+*/
 
 let body = $response.body;
 
 if (body) {
     let obj = JSON.parse(body);
 
-    // 1. 破解会员方案与状态
+    // 1. 修改会员状态为 Pro
     if (obj.data && obj.data.membership) {
         obj.data.membership.current_plan = "pro"; 
         obj.data.membership.plan_id = "pro_yearly"; 
@@ -21,7 +21,7 @@ if (body) {
         obj.data.membership.plan_expire_time = 4097308800; // 2100年
     }
 
-    // 2. 解锁各项使用额度 (Limit调大，Used清零)
+    // 2. 解锁无限额度
     if (obj.data && obj.data.quota) {
         let q = obj.data.quota;
         q.channel_sub_limit = 9999;
@@ -41,8 +41,8 @@ if (body) {
         q.daily_voice_used = 0;
     }
 
-    // Debug 通知
-    $notify("语鲸 App 绕过脚本", "🚀 重写执行成功", "已成功修改本地会员状态数据");
+    // 3. 执行成功发送通知
+    $notify("语鲸 App 绕过脚本", "🚀 重写执行成功", "已成功将数据修改为 Pro 会员模式");
 
     $done({ body: JSON.stringify(obj) });
 } else {
