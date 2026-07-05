@@ -41,9 +41,6 @@ if (body) {
         q.daily_voice_used = 0;
     }
 
-    // 3. 执行成功发送通知
-    $notify("语鲸 App 绕过脚本", "🚀 重写执行成功", "已成功将数据修改为 Pro 会员模式");
-
     $done({ body: JSON.stringify(obj) });
 } else {
     $done({});
