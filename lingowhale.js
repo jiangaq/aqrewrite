@@ -9,9 +9,8 @@
 
 [rewrite_local]
 
-^https:\/\/api-public\.lingowhale\.com\/api\/lingowhale\/v1\/membership\/status url script-response-body https://raw.githubusercontent.com/jiangaq/aqrewrite/refs/heads/main/lingowhale.js
-^https:\/\/api-public\.lingowhale\.com\/api\/lingowhale\/v1\/membership\/plans url script-response-body https://raw.githubusercontent.com/jiangaq/aqrewrite/refs/heads/main/lingowhale.js
-
+^https:\/\/api-public\.lingowhale\.com\/api\/lingowhale\/v1\/membership\/status url script-response-body https://raw.githubusercontent.com/jiangaq/aqrewrite/main/lingowhale.js
+^https:\/\/api-public\.lingowhale\.com\/api\/lingowhale\/v1\/membership\/plans url script-response-body https://raw.githubusercontent.com/jiangaq/aqrewrite/main/lingowhale.js
 [mitm]
 
 hostname = api-public.lingowhale.com
